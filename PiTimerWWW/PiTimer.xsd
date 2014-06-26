@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://azallans.com/XMLschema" targetNamespace="http://azallans.com/XMLschema" elementFormDefault="qualified">
+    
+    <xs:element name="PiTimer" type="xsd:PiTimer"/>
+
+    <xs:complexType name="PiTimer">
+    	<xs:sequence>
+    		<xs:element name="Zones" type="xsd:Zones" maxOccurs="1" minOccurs="1"/>
+    		<xs:element name="Schedule" type="xsd:Schedule" maxOccurs="1" minOccurs="1"/>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Zones">
+    	<xs:sequence>
+    		<xs:element name="Zone" maxOccurs="unbounded"
+    			minOccurs="1" type="xsd:Zone">
+
+
+    		</xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Schedule">
+    	<xs:sequence>
+    		<xs:element name="Program" type="xsd:Program" maxOccurs="unbounded" minOccurs="1"/>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Program">
+    	<xs:sequence>
+    		<xs:choice>
+    			<xs:element name="Date" type="xs:date" maxOccurs="1"
+    				minOccurs="1" />
+    			<xs:element name="Day" type="xsd:Day"
+    				maxOccurs="unbounded" minOccurs="1" />
+    		</xs:choice>
+    		<xs:element name="StartTime" type="xs:time" maxOccurs="1"
+    			minOccurs="1" />
+
+    		<xs:element name="Timer" type="xsd:Timer"
+    			maxOccurs="unbounded" minOccurs="1">
+    		</xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="name" type="xs:string"/>
+    </xs:complexType>
+
+
+
+    <xs:simpleType name="Day">
+    	<xs:restriction base="xs:string">
+    		<xs:enumeration value="Sun"></xs:enumeration>
+    		<xs:enumeration value="Mon"></xs:enumeration>
+    		<xs:enumeration value="Tue"></xs:enumeration>
+    		<xs:enumeration value="Wed"></xs:enumeration>
+    		<xs:enumeration value="Thu"></xs:enumeration>
+    		<xs:enumeration value="Fri"></xs:enumeration>
+    		<xs:enumeration value="Sat"></xs:enumeration>
+    	</xs:restriction>
+    </xs:simpleType>
+
+
+
+
+
+    <xs:complexType name="Zone">
+    	<xs:simpleContent>
+    		<xs:extension base="xs:string">
+    			<xs:attribute name="ZoneID" type="xs:int">
+    			</xs:attribute>
+    		</xs:extension>
+    	</xs:simpleContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="Timer">
+    	<xs:simpleContent>
+    		<xs:extension base="xs:int">
+    			<xs:attribute name="ZoneID" type="xs:int"></xs:attribute>
+    		</xs:extension>
+    	</xs:simpleContent>
+    </xs:complexType>
+</xs:schema>

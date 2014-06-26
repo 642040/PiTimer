@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+#
+#	JqueryMobile driven PiTimer interface
+#
+#	Adrian Allan 9/9/2013
+#
+-->
+<html>
+	<head>
+		<title>PiTimer</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="apple-touch-icon" href="water_drop.png"/>
+		<!-- <link rel="apple-touch-startup-image" href="startup.png"> -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="PiTimer.js"></script>
+		text/css">
+		* {
+		margin: 0;
+		padding: 0;
+		}
+		html, body {
+		height: 100%;
+		width: 100%;
+		}
+		canvas {
+		display: block;
+		}
+		</style>
+		<script>
+			myXml = "";
+			$(document).on('mobileinit', function() {
+				$.mobile.defaultPageTransition = "slide";
+				//alert('Got Here 1');
+				$.ajax({
+					type : "GET",
+					url : "PiTimer.xml",
+					dataType : "xml",
+					success : parseXml
+				});
+			});
+
+		</script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	</head>
+	<body>
+
+		<!-- Home -->
+		<div data-role="page" id="home" data-theme="a">
+			<div data-role="header" data-position="fixed">
+				<h3> PiTimer </h3>
+			</div>
+			<div data-role="content">
+				<a data-role="button" href="#zones" data-transition="slide" data-icon="arrow-r" data-iconpos="left"> Zones </a>
+				<a data-role="button" href="#programlist" data-icon="arrow-r" data-iconpos="left"> Programs </a>
+				<style>
+					.ui-content-scroll {
+						overflow-x: scroll;
+					}
+				</style>
+
+				<canvas id="myCanvas">
+					Your browser does not support the HTML5 canvas tag.
+				</canvas>
+				<script>
+					DrawChart();
+				</script>
+
+			</div>
+		</div><!-- /page -->
+
+		<!-- Zones -->
+		<div data-role="page" id="zones" data-theme="a">
+			<form id="zoneEdit" data-ajax="false">
+				<div data-role="header" data-position="fixed">
+					<button type="submit" class="ui-btn-right" data-mini="true">
+						Save
+					</button>
+					<a data-role="button" href="#home" data-direction="reverse" data-transition="slide" data-icon="back" data-iconpos="left" class="ui-btn-left"> Home </a>
+					<h3> Zones </h3>
+				</div>
+				<div data-role="content">
+					<div data-role="fieldcontain">
+						<fieldset id="zonelist" data-role="controlgroup" data-mini="false"></fieldset>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- Program List -->
+		<div data-role="page" id="programlist" data-theme="a">
+			<div data-role="header" data-position="fixed">
+				<a data-role="button" onclick="addProgram();" data-icon="plus" data-iconpos="left" class="ui-btn-right"> Add </a>
+				<a data-role="button" href="#home" data-direction="reverse" data-transition="slide" data-icon="back" data-iconpos="left" class="ui-btn-left"> Back </a>
+				<h3> Programs </h3>
+			</div>
+			<div id="programnames" data-role="content">
+
+			</div>
+		</div>
+
+		<!-- Program Edit -->
+		<div data-role="page" id="program" data-theme="a">
+			<form id="programEdit" data-ajax="false">
+				<div data-role="header" data-position="fixed">
+					<button type="submit" class="ui-btn-right" data-mini="true">
+						Save
+					</button>
+					<a data-role="button" href="#programlist" data-direction="reverse" data-transition="slide" data-icon="back" data-iconpos="left"	class="ui-btn-left"> Back </a>
+					<h3 id="PePageName"></h3>
+				</div>
+				<div data-role="content">
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup" data-mini="False">
+							<label for="PeProgName"> Program Name: </label>
+							<input name="test" id="PeProgName" placeholder="Program Name" value="" type="text">
+							<label for="PeStartTime"> Start Time: </label>
+							<input name="" id="PeStartTime" placeholder="12:00" value="" type="time">
+						</fieldset>
+						<fieldset id="PeWeek" data-role="controlgroup" data-type="horizontal" data-mini="true">
+							<legend>
+								Days:
+							</legend>
+							<input id="PeSun" type="checkbox">
+							<label for="PeSun"> S </label>
+							<input id="PeMon" type="checkbox">
+							<label for="PeMon"> M </label>
+							<input id="PeTue" type="checkbox">
+							<label for="PeTue"> T </label>
+							<input id="PeWed" type="checkbox">
+							<label for="PeWed"> W </label>
+							<input id="PeThu" type="checkbox">
+							<label for="PeThu"> T </label>
+							<input id="PeFri" type="checkbox">
+							<label for="PeFri"> F </label>
+							<input id="PeSat" type="checkbox">
+							<label for="PeSat"> S </label>
+						</fieldset>
+						<fieldset id="PeZones" data-role="controlgroup" data-type="vertical" data-mini="false"></fieldset>
+					</div>
+					<input type="submit" data-theme="e" data-icon="delete" data-iconpos="left"
+					value="Delete" data-mini="true">
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
