@@ -24,41 +24,16 @@ my ($Schedules)=$PiTimer->findnodes($xpath);
 
 #	Build new program blank
 my $newProgram = <<STREND;
-		<Program name="New Program">
-			<StartTime>00:00:00</StartTime>
-			<Timer>
-				<Zone>1</Zone>
-				<RunTime>0</RunTime>
-			</Timer>
-			<Timer>
-				<Zone>2</Zone>
-				<RunTime>0</RunTime>
-			</Timer>
-			<Timer>
-				<Zone>3</Zone>
-				<RunTime>0</RunTime>
-			</Timer>
-			<Timer>
-				<Zone>4</Zone>
-				<RunTime>0</RunTime>
-			</Timer>
-			<Timer>
-				<Zone>5</Zone>
-				<RunTime>0</RunTime>
-			</Timer>			
-			<Timer>
-				<Zone>6</Zone>
-				<RunTime>0</RunTime>
-			</Timer>
-			<Timer>
-				<Zone>7</Zone>
-				<RunTime>0</RunTime>
-			</Timer>
-			<Timer>
-				<Zone>8</Zone>
-				<RunTime>0</RunTime>
-			</Timer>
-		</Program>
+                <Program name="New Program">
+                        <Day>Sun</Day>
+                        <Day>Mon</Day>
+                        <Day>Tue</Day>
+                        <Day>Wed</Day>
+                        <Day>Thu</Day>
+                        <Day>Fri</Day>
+                        <Day>Sat</Day>
+                        <StartTime>00:00:00</StartTime>
+                </Program>
 STREND
 
 #	Create fragment of XML from the program blank string

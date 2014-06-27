@@ -15,7 +15,6 @@
 			<Date>2014-06-12</Date>
 			<StartTime>07:05:00</StartTime>
 			<Timer ZoneID="1">0</Timer>
-			<Timer ZoneID="2">0</Timer>
 			<Timer ZoneID="3">0</Timer>
 			<Timer ZoneID="4">0</Timer>
 			<Timer ZoneID="5">0</Timer>
@@ -28,8 +27,8 @@
 			<Day>Wed</Day>
 			<Day>Fri</Day>
 			<StartTime>09:00:00</StartTime>
-			<Timer ZoneID='4'>15</Timer>
-			<Timer ZoneID='5'>30</Timer>
+			<Timer ZoneID='4'>10</Timer>
+			<Timer ZoneID='5'>10</Timer>
 			<Timer ZoneID='7'>10</Timer>
 		</Program>
 		<Program name="Grass PM">
@@ -37,8 +36,8 @@
 			<Day>Wed</Day>
 			<Day>Fri</Day>
 			<StartTime>15:00:00</StartTime>
-			<Timer ZoneID='4'>15</Timer>
-			<Timer ZoneID='5'>30</Timer>
+			<Timer ZoneID='4'>10</Timer>
+			<Timer ZoneID='5'>10</Timer>
 			<Timer ZoneID='7'>10</Timer>
 		</Program>
 		<Program name="Drip AM">

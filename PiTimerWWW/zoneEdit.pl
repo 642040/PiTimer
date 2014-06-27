@@ -10,7 +10,7 @@ use strict;
 use CGI ':standard';
 use Data::Dumper;
 use XML::LibXML;
-#open(JUNK,">junk.txt");
+open(JUNK,">junk.txt");
 
 my $parser = XML::LibXML->new();
 my $PiTimer = $parser->parse_file('./PiTimer.xml');
@@ -20,9 +20,9 @@ my $query = new CGI;
 my @names = $query->param;
 for my $name (@names) {
 	my $value = $query->param($name);
-#	print JUNK "$name : $value\n";
+	print JUNK "$name : $value\n";
 	if($name=~(/textinput(\d)/)) {
-		my $xpath="PiTimer/Zones/ZoneName[\@id=\"$1\"]";
+		my $xpath="PiTimer/Zones/Zone[\@ZoneID=\"$1\"]";
 		my ($ZoneName)=$PiTimer->findnodes($xpath);
 		$ZoneName->removeChildNodes();
 		$ZoneName->appendText($value);
