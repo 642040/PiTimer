@@ -62,11 +62,11 @@ sub evapadj() {
 	print OUTF "Rainfall(adj): $precipi\n";
 	if($precipi+$totevap>0){
 	        $remainder=$precipi+$totevap;
-	        print OUTF "Ratio: 0.0\n";
+	        print OUTF "Ratio: 0%\n";
 	        print OUTF "Remainder: $remainder\n";
 	}else{
 	        my $ratio=($totevap+$precipi)/-0.4286;
-	        print OUTF "Ratio: $ratio\n";
+	        printf OUTF "Ratio: %d%%\n",$ratio*100;
 	        print OUTF "Remainder: 0.0\n";
 	}
 	close(OUTF);

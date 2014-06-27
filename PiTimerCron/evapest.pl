@@ -44,7 +44,7 @@ if($precipi+$totevap>0){
 	print OUTF "Remainder: $remainder\n";
 }else{
 	my $ratio=($totevap+$precipi)/-0.4286;
-	print OUTF "Ratio: $ratio\n";
+	printf OUTF "Ratio: %d\n",$ratio*100;
 	print OUTF "Remainder: 0.0\n";
 }
 close(OUTF);

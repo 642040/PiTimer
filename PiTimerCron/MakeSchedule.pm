@@ -32,8 +32,9 @@ sub MakeSchedule {
 	
 	open( INFO, "/var/www/PiTimer/evapadj.txt" );
 	while ( my $line = <INFO> ) {
-		if ( $line =~ s/^Ratio: (.*)$/$1/ ) {
-			$ratio = $1;
+		if ( $line =~ /^Ratio: (.*)%$/ ) {
+			$ratio = $1/100;
+			#print "$ratio\n";
 		}
 	}
 	close INFO;
@@ -48,7 +49,7 @@ sub MakeSchedule {
 				my $StartTime = $1 * 60 + $2;
 				foreach my $timer ( $program->findnodes('./Timer') ) {
 					my $zone = $timer->getAttribute('ZoneID');
-					my $RunTime =$timer->textContent;
+					my $RunTime =$timer->textContent+.5;
 					#print "Zone: $zone RunTime: $RunTime\n";
 					for my $i ( 1 .. $RunTime ) {
 						while ( defined( $Schedule{$day}{$StartTime} ) ) {
@@ -69,7 +70,7 @@ sub MakeSchedule {
 				#print "$StartTime\n";
 				foreach my $timer ( $program->findnodes('./Timer') ) {
 					my $zone = $timer->getAttribute('ZoneID');
-					my $RunTime =$timer->textContent;
+					my $RunTime =int($ratio*$timer->textContent+.5);
 					#print "Zone: $zone RunTime: $RunTime\n";
 					for my $i ( 1 .. $RunTime ) {
 						while ( defined( $Schedule{$ProgDay}{$StartTime} ) ) {
