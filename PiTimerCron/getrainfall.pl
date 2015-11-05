@@ -13,6 +13,8 @@ use XML::LibXML;        # Install using 'apt-get install libxml-libxml-perl'
 
 #my $date=shift();
 
+chdir('/tmp');
+
 my $target_Lat=shift();
 my $target_Lon=shift();
 
@@ -30,7 +32,7 @@ my $hourly=get("http://api.wunderground.com/api/f2670ecbe98f8ba2/yesterday/q/${t
 sub evapadj() {
 	my $precipi=shift();
 	my $remainder=0.0;
-#	if(open(INFO,"/var/www/PiTimer/evapadj.txt")){
+#	if(open(INFO,"/var/www/evapadj.txt")){
 	if(open(INFO,"evapadj.txt")){
 		while (my $line=<INFO>) {
 		        if ($line=~s/^Remainder: (.*)$/$1/) {
@@ -39,7 +41,7 @@ sub evapadj() {
 		}
 		close INFO;
 	}
-	open(OUTF,">/var/www/PiTimer/evapadj.txt");
+	open(OUTF,">/var/www/evapadj.txt");
 #	open(OUTF,">evapadj.txt");
 
 	my $parser = XML::LibXML->new();
@@ -60,13 +62,16 @@ sub evapadj() {
 	print OUTF "Rainfall: $precipi\n";
 	$precipi+=$remainder;
 	print OUTF "Rainfall(adj): $precipi\n";
+
+	my $ratio=($totevap+$precipi)/-0.4286;
+	$ratio= 0 >= $ratio ? 0 : $ratio;       #Lower limit zero
+	$ratio = int($ratio * 100);
+	print OUTF "Ratio: $ratio\%\n";
+
 	if($precipi+$totevap>0){
 	        $remainder=$precipi+$totevap;
-	        print OUTF "Ratio: 0%\n";
 	        print OUTF "Remainder: $remainder\n";
 	}else{
-	        my $ratio=($totevap+$precipi)/-0.4286;
-	        printf OUTF "Ratio: %d%%\n",$ratio*100;
 	        print OUTF "Remainder: 0.0\n";
 	}
 	close(OUTF);

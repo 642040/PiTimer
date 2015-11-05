@@ -30,7 +30,7 @@ sub MakeSchedule {
 	
 	my $ratio = 1.0;
 	
-	open( INFO, "/var/www/PiTimer/evapadj.txt" );
+	open( INFO, "/var/www/evapadj.txt" );
 	while ( my $line = <INFO> ) {
 		if ( $line =~ /^Ratio: (.*)%$/ ) {
 			$ratio = $1/100;
@@ -41,7 +41,7 @@ sub MakeSchedule {
 	
 	my $parser = XML::LibXML->new();
 	
-	my $PiTimer = $parser->parse_file('/var/www/PiTimer/PiTimer.xml');
+	my $PiTimer = $parser->parse_file('/var/www/PiTimer.xml');
 	foreach my $program ( $PiTimer->findnodes('PiTimer/Schedule/Program') ) {
 		if ( my $date = $program->findvalue('./Date') ) {
 			if ( $date eq $today ) {

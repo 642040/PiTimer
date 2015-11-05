@@ -19,7 +19,7 @@ my %Zones = (
 );
 	
 foreach my $zone (keys %Zones) {
-	if($cmd == "ON" && $cmdzone == $zone) {
+	if($cmd eq "ON" && $cmdzone == $zone) {
 		Device::BCM2835::gpio_fsel($Zones{$zone},&Device::BCM2835::BCM2835_GPIO_FSEL_OUTP);
         	Device::BCM2835::gpio_write($Zones{$zone},0);
 	}else{

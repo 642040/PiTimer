@@ -10,7 +10,7 @@ my $yesterday=get('http://api.wunderground.com/api/f2670ecbe98f8ba2/yesterday/q/
 #close INFO;
 
 my $remainder=0.0;
-open(INFO,"/var/www/PiTimer/evapadj.txt");
+open(INFO,"/var/www/evapadj.txt");
 while (my $line=<INFO>) {
         if ($line=~s/^Remainder: (.*)$/$1/) {
                 $remainder=$1;
@@ -18,7 +18,7 @@ while (my $line=<INFO>) {
 }
 close INFO;
 
-open(OUTF,">/var/www/PiTimer/evapadj.txt");
+open(OUTF,">/var/www/evapadj.txt");
 
 my $parser = XML::LibXML->new();
 my $xmlday=$parser->parse_string($yesterday);

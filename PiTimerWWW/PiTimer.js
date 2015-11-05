@@ -23,17 +23,15 @@ var oneHour;
 var oneDay;
 var BorderTop;
 var BorderLeft;
-var zoneNames={};
 
 function parseXml(xml) {
 	myXml = $(xml);
 	$('#zonelist').empty();
 	$(xml).find("Zone").each(function() {
 		//alert('Got Here 2');
-		var zoneNumber=$(this).attr("ZoneID");
-		zoneNames[zoneNumber]=$(this).text();
-		var color=zones[zoneNumber-1];
-		$('#zonelist').append('<fieldset data-role="controlgroup"><input name="textinput' + zoneNumber + '" id="textinput' + zoneNumber + '" style="background:'+color+'" placeholder="" value="' + $(this).text() + '" type="text"></fieldset>').trigger('create');
+		var zonenumber=$(this).attr("ZoneID");
+		var color=zones[zonenumber-1];
+		$('#zonelist').append('<fieldset data-role="controlgroup"><input name="textinput' + zonenumber + '" id="textinput' + zonenumber + '" style="background:'+color+'" placeholder="" value="' + $(this).text() + '" type="text"></fieldset>').trigger('create');
 	});
 	$('#programnames').empty();
 	$(xml).find("Program").each(function() {
@@ -159,27 +157,8 @@ $(function () {
 	//	Bind submit operation on ZoneEdit to this function
     $('#zoneEdit').bind('submit', function (z) {
     	//	Override the default jquerymobile functionality
-        //z.preventDefault();
+        z.preventDefault();
         //	Pass form data to zone.pl on the server side
-		$.ajax({
-			type: "POST",
-			url: "./zoneEdit.pl",
-			data: $(this).serialize()
-		})
-			.done(function (msg) {
-				$.ajax({
-					type : "GET",
-					url : "PiTimer.xml",
-					dataType : "xml",
-					success : parseXml
-				});
-				//	Alert to provide feedback to user that change was successful
-				alert('Saved');
-			});
-		
-		
-/*		
-		
         $.post('./zoneEdit.pl', $(this).serialize(), function (response) {
         	//	Reload updated PiTimer.xml file
 			$.ajax({
@@ -193,12 +172,8 @@ $(function () {
             //	Alert to provide feedback to user that change was successful
 	    	alert('Saved');
         });
-*/	
-
-	});
-	
-	
-    //
+    });
+    	//
 	//	Function to handle changes to Programs and push them to the PiTimer.xml file
 	//
 	//	Bind submit operation on ZoneEdit to this function
@@ -268,8 +243,11 @@ function editProgram(pname) {
 		//	Build sliders for each zone
 		$('#PeZones').empty();
 		$(this).find("Timer").each(function() {
-			var zoneNumber=$(this).attr("ZoneID");
-			$('#PeZones').append('<label for="slider-1">' + zoneNames[zoneNumber] + '</label><input type="range" name="slider-1" id="slider-1" value="' + $(this).text() + '" min="0" max="60" /><br \>').trigger('create');
+			myXpath = 'Zone[id="' + $(this).attr("ZoneID") + '"]';
+			zoneName = myXml.find(myXpath).text();
+			if (zoneName != "") {
+				$('#PeZones').append('<label for="slider-1">' + zoneName + '</label><input type="range" name="slider-1" id="slider-1" value="' + $(this).find("RunTime").text() + '" min="0" max="60" /><br \>').trigger('create');
+			}
 		});
 	});
 };
