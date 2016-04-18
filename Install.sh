@@ -8,8 +8,12 @@ git pull origin
 
 apt-get update
 apt-get -y install apache2 build-essential
+apt-get -y install libwww-perl libxml-libxml-perl libdbd-xbase-perl
+apt-get install libmath-complex-perl
 
+olddir=`pwd`
 cd ~
+
 wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.50.tar.gz
 tar zxvf bcm2835-1.50.tar.gz
 cd bcm2835-1.50
@@ -17,12 +21,12 @@ cd bcm2835-1.50
 make
 make check
 make install
-cd -
 
-cpan Device::BCM2835
+cd $olddir
 
-ln -s PiTimerWWW/ /var/www/PiTimer/
-ln -s PiTimerCron/ /root/PiTimerCron/
+mv /var/www /var/www.orig
+ln -s /root/PiTimer/PiTimerWWW/ /var/www
+ln -s /root/PiTimer/PiTimerCron /root/PiTimerCron/
 
 # setup crontabs
 crontab crontab.config

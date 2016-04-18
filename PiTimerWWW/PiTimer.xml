@@ -30,9 +30,7 @@
 			<StartTime>09:00:00</StartTime>
 			<Timer ZoneID='4'>7</Timer>
 			<Timer ZoneID='5'>10</Timer>
-<!--
 			<Timer ZoneID='7'>12</Timer>
--->
 		</Program>
 		<Program name="Grass PM">
 			<Day>Mon</Day>
@@ -41,9 +39,7 @@
 			<StartTime>15:00:00</StartTime>
 			<Timer ZoneID='4'>7</Timer>
 			<Timer ZoneID='5'>10</Timer>
-<!--
 			<Timer ZoneID='7'>12</Timer>
--->
 		</Program>
 		<Program name="Drip AM">
 			<Day>Sun</Day>
