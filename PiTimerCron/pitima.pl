@@ -8,14 +8,14 @@ my $cmdzone=shift();
 my $cmd=shift();
 
 my %Zones = (
-	1=>&Device::BCM2835::RPI_GPIO_P1_07,
-	2=>&Device::BCM2835::RPI_GPIO_P1_11,
-	3=>&Device::BCM2835::RPI_GPIO_P1_19,
-	4=>&Device::BCM2835::RPI_GPIO_P1_15,
-	5=>&Device::BCM2835::RPI_GPIO_P1_12,
-	6=>&Device::BCM2835::RPI_GPIO_P1_16,
-	7=>&Device::BCM2835::RPI_GPIO_P1_18,
-	8=>&Device::BCM2835::RPI_GPIO_P1_22,
+	1=>&Device::BCM2835::RPI_GPIO_P1_12,
+#	2=>&Device::BCM2835::RPI_GPIO_P1_13,
+	3=>&Device::BCM2835::RPI_GPIO_P1_15,
+	4=>&Device::BCM2835::RPI_GPIO_P1_16,
+	5=>&Device::BCM2835::RPI_GPIO_P1_18,
+	6=>&Device::BCM2835::RPI_GPIO_P1_22,
+	7=>&Device::BCM2835::RPI_GPIO_P1_07,
+	8=>&Device::BCM2835::RPI_GPIO_P1_11,
 );
 	
 foreach my $zone (keys %Zones) {
@@ -23,6 +23,8 @@ foreach my $zone (keys %Zones) {
 		Device::BCM2835::gpio_fsel($Zones{$zone},&Device::BCM2835::BCM2835_GPIO_FSEL_OUTP);
         	Device::BCM2835::gpio_write($Zones{$zone},0);
 	}else{
-		Device::BCM2835::gpio_fsel($Zones{$zone},&Device::BCM2835::BCM2835_GPIO_FSEL_INPT);
+#		Device::BCM2835::gpio_fsel($Zones{$zone},&Device::BCM2835::BCM2835_GPIO_FSEL_INPT);
+		Device::BCM2835::gpio_fsel($Zones{$zone},&Device::BCM2835::BCM2835_GPIO_FSEL_OUTP);
+                Device::BCM2835::gpio_write($Zones{$zone},1);
 	}
 };
