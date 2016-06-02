@@ -32,8 +32,8 @@ my $hourly=get("http://api.wunderground.com/api/f2670ecbe98f8ba2/yesterday/q/${t
 sub evapadj() {
 	my $precipi=shift();
 	my $remainder=0.0;
-#	if(open(INFO,"/var/www/evapadj.txt")){
-	if(open(INFO,"evapadj.txt")){
+	if(open(INFO,"/var/www/evapadj.txt")){
+#	if(open(INFO,"evapadj.txt")){
 		while (my $line=<INFO>) {
 		        if ($line=~s/^Remainder: (.*)$/$1/) {
 		                $remainder=$1;

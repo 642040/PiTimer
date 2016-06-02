@@ -12,34 +12,34 @@
 	</Zones>
 	<Schedule>
 		<Program name="OneTime">
-			<Date>2016-04-19</Date>
-			<StartTime>17:30:00</StartTime>			
-			<Timer ZoneID="1">10</Timer>
+			<Date>2016-05-29</Date>
+			<StartTime>09:22:00</StartTime>			
+			<Timer ZoneID="1">0</Timer>
 			<Timer ZoneID="2">0</Timer>
-			<Timer ZoneID="3">10</Timer>
-			<Timer ZoneID="4">10</Timer>
-			<Timer ZoneID="5">10</Timer>
-			<Timer ZoneID="6">10</Timer>
-			<Timer ZoneID="7">10</Timer>
-			<Timer ZoneID="8">10</Timer>
+			<Timer ZoneID="3">0</Timer>
+			<Timer ZoneID="4">0</Timer>
+			<Timer ZoneID="5">0</Timer>
+			<Timer ZoneID="6">0</Timer>
+			<Timer ZoneID="7">0</Timer>
+			<Timer ZoneID="8">15</Timer>
 		</Program>
 		<Program name="Grass AM">
 			<Day>Mon</Day>
 			<Day>Wed</Day>
 			<Day>Fri</Day>
 			<StartTime>09:00:00</StartTime>
-			<Timer ZoneID='8'>7</Timer>
-			<Timer ZoneID='4'>10</Timer>
-			<Timer ZoneID='5'>15</Timer>
+			<Timer ZoneID='8'>15</Timer>
+			<Timer ZoneID='4'>15</Timer>
+			<Timer ZoneID='5'>20</Timer>
 		</Program>
 		<Program name="Grass PM">
 			<Day>Mon</Day>
 			<Day>Wed</Day>
 			<Day>Fri</Day>
 			<StartTime>15:00:00</StartTime>
-			<Timer ZoneID='8'>7</Timer>
-			<Timer ZoneID='4'>10</Timer>
-			<Timer ZoneID='5'>15</Timer>
+			<Timer ZoneID='8'>15</Timer>
+			<Timer ZoneID='4'>15</Timer>
+			<Timer ZoneID='5'>20</Timer>
 		</Program>
 		<Program name="Drip AM">
 			<Day>Sun</Day>
@@ -50,9 +50,9 @@
 			<Day>Fri</Day>
 			<Day>Sat</Day>
 			<StartTime>06:00:00</StartTime>
-			<Timer ZoneID='1'>20</Timer>
-			<Timer ZoneID='3'>20</Timer>
-			<Timer ZoneID='6'>20</Timer>
+			<Timer ZoneID='1'>25</Timer>
+			<Timer ZoneID='3'>30</Timer>
+			<Timer ZoneID='6'>25</Timer>
 		</Program>
 		<Program name="Drip PM">
 			<Day>Sun</Day>
@@ -63,15 +63,15 @@
 			<Day>Fri</Day>
 			<Day>Sat</Day>
 			<StartTime>18:00:00</StartTime>
-			<Timer ZoneID='1'>20</Timer>
-			<Timer ZoneID='3'>20</Timer>
-			<Timer ZoneID='6'>20</Timer>
+			<Timer ZoneID='1'>25</Timer>
+			<Timer ZoneID='3'>30</Timer>
+			<Timer ZoneID='6'>25</Timer>
 		</Program>
 		<Program name="Citrus">
 			<Day>Wed</Day>
 			<Day>Sat</Day>
 			<StartTime>11:00:00</StartTime>
-			<Timer ZoneID='7'>45</Timer>
+			<Timer ZoneID='7'>60</Timer>
 		</Program>
 	</Schedule>
 </PiTimer>
