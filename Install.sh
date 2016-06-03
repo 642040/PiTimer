@@ -9,7 +9,7 @@ git pull origin
 apt-get update
 apt-get -y install apache2 build-essential
 apt-get -y install libwww-perl libxml-libxml-perl libdbd-xbase-perl
-apt-get install libmath-complex-perl
+apt-get -y install libmath-complex-perl
 
 olddir=`pwd`
 cd ~
@@ -26,7 +26,8 @@ cd $olddir
 
 mv /var/www /var/www.orig
 ln -s /root/PiTimer/PiTimerWWW/ /var/www
-ln -s /root/PiTimer/PiTimerCron /root/PiTimerCron/
+chown -h www-data:www-data /var/www
+chmod 755 /root
 
 # setup crontabs
 crontab crontab.config
