@@ -34,6 +34,7 @@ foreach my $observation ($xmlday->findnodes('/response/history/observations/obse
 }
 
 my $precipi=$xmlday->findvalue('/response/history/dailysummary/summary/precipi');
+$precipi=~s/T/0/;
 print OUTF "Total Evaporation: $totevap\n";
 print OUTF "Rainfall: $precipi\n";
 $precipi+=$remainder;

@@ -25,7 +25,7 @@ TEMP	HUM	EVAP
 87.1	40	-0.0139450765208229
 84.9	43	-0.0126137711587275
 Total Evaporation: -0.425504323952728
-Rainfall: T
+Rainfall: 0
 Rainfall(adj): 0
 Ratio: 99
 Remainder: 0.0

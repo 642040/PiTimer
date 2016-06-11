@@ -38,13 +38,13 @@ foreach my $zone ( keys %Zones ) {
 	if ( defined( $Schedule{$day}{$CurTime} )
 		&& $Schedule{$day}{$CurTime} == $zone )
 	{
-		print "$zone ON\n";
+		#print "$zone ON\n";
 		Device::BCM2835::gpio_fsel( $Zones{$zone},
 			&Device::BCM2835::BCM2835_GPIO_FSEL_OUTP );
 		Device::BCM2835::gpio_write( $Zones{$zone}, 0 );
 	}
 	else {
-		print "$zone OFF\n";
+		#print "$zone OFF\n";
 		Device::BCM2835::gpio_fsel( $Zones{$zone},
                         &Device::BCM2835::BCM2835_GPIO_FSEL_OUTP );
                 Device::BCM2835::gpio_write( $Zones{$zone}, 1 );
