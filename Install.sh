@@ -11,18 +11,7 @@ apt-get -y install apache2 build-essential
 apt-get -y install libwww-perl libxml-libxml-perl libdbd-xbase-perl
 apt-get -y install libmath-complex-perl
 
-olddir=`pwd`
-cd ~
-
-wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.50.tar.gz
-tar zxvf bcm2835-1.50.tar.gz
-cd bcm2835-1.50
-./configure
-make
-make check
-make install
-
-cd $olddir
+cpan install Device::BCM2835
 
 mv /var/www /var/www.orig
 ln -s /root/PiTimer/PiTimerWWW/ /var/www

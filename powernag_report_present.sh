@@ -5,6 +5,8 @@
 LOG_PATH=/var/log   # writable to user calling this script
 EMAIL=adrian@azallans.com                        # as registered with PowerNag.com
 FUNCTION=PiTimer                     # as registered with Powernag.com
+CPUTEMP=`cat /sys/class/thermal/thermal_zone0/temp`
+CPUTEMP=`echo "scale=1;($CPUTEMP+50)/1000" |bc`
 
 # Be sure that this script is executable, e.g. '$ chmod +x powernag_report_present.sh'
 # Maybe use '$ crontab -e' to add a line calling this script, e.g.
@@ -28,7 +30,7 @@ until [ $RESULT -eq 0 ] || [ $TRIES -ge 3 ]
 do
   if [ $TRIES -gt 0 ]; then sleep 25; fi
   OUTPUT=`wget -O - -q \
-          --post-data="request=present&email=$EMAIL&function=$FUNCTION" \
+          --post-data="request=present&email=$EMAIL&function=$FUNCTION&p0=$CPUTEMP" \
           http://PowerNag.com/api`
   RESULT=$?
   (( TRIES++ ))
